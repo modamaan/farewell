@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Farewell Admin Setup</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+  <style>
+    body { background: var(--bg-dark); }
+  </style>
+</head>
+<body>
+
+  <div class="setup-panel">
+    <div class="setup-card">
+      <div class="setup-logo">⚙️</div>
+      <h2>Configure Your Farewell Page</h2>
+      <p class="setup-subtitle">Fill in the details below to personalize this page</p>
+
+      <div class="form-group">
+        <label>📅 Farewell Event Date & Time</label>
+        <input type="datetime-local" id="cfg-date" />
+      </div>
+
+      <div class="form-group">
+        <label>📎 Google Drive File Links</label>
+        <textarea id="cfg-links" placeholder="Paste your Google Drive share links here, one per line...
+https://drive.google.com/file/d/ABC123.../view
+https://drive.google.com/file/d/XYZ456.../view" rows="6"></textarea>
+        <small>In Google Drive: select files → right-click → <strong>Get link</strong> (set to Anyone with link) → paste here. Videos are auto-detected.</small>
+      </div>
+
+      <div class="setup-actions">
+        <button class="btn-primary" onclick="saveConfig()">💾 Save Settings & View Page</button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    let config = { date: '', links: '' };
+
+    document.addEventListener('DOMContentLoaded', () => {
+      const saved = localStorage.getItem('farewellConfig');
+      if (saved) {
+        try { config = { ...config, ...JSON.parse(saved) }; fillForm(); } catch(e) {}
+      }
+    });
+
+    function fillForm() {
+      if (config.date)    document.getElementById('cfg-date').value    = config.date;
+      if (config.links)   document.getElementById('cfg-links').value   = config.links;
+    }
+
+    function saveConfig() {
+      config.date  = document.getElementById('cfg-date').value;
+      config.links = document.getElementById('cfg-links').value.trim();
+
+      if (!config.date) { 
+        alert("Please select the event date and time."); 
+        return; 
+      }
+
+      localStorage.setItem('farewellConfig', JSON.stringify(config));
+      window.location.href = 'index.html';
+    }
+
+
+  </script>
+</body>
+</html>

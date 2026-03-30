@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Farewell — Beautiful Memories</title>
+  <meta name="description" content="A beautiful farewell countdown and memory gallery." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&family=Dancing+Script:wght@600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <!-- NO SETUP PANEL HERE ANYMORE. MOVED TO admin.html -->
+
+  <!-- ========== MAIN APP ========== -->
+  <div id="app" class="app">
+
+    <!-- Particles Background -->
+    <div class="particles" id="particles"></div>
+
+    <!-- ========== COUNTDOWN SCREEN ========== -->
+    <section id="countdown-screen" class="screen countdown-screen">
+      <div class="countdown-content">
+        <div class="farewell-badge">
+          <span class="badge-icon">💫</span>
+          <span>Farewell Celebration</span>
+        </div>
+        <h1 class="farewell-title">Good Bye Friends,<br/><span class="gradient-text">The Memories Forever</span></h1>
+        <p class="farewell-tagline">Looking back at the beautiful chaos and the incredible moments we built together.</p>
+
+        <div class="countdown-container">
+          <div class="countdown-label">Event begins in</div>
+          <div class="countdown-timer" id="countdown-timer">
+            <div class="time-unit">
+              <div class="time-value" id="days">00</div>
+              <div class="time-label">Days</div>
+            </div>
+            <div class="time-separator">:</div>
+            <div class="time-unit">
+              <div class="time-value" id="hours">00</div>
+              <div class="time-label">Hours</div>
+            </div>
+            <div class="time-separator">:</div>
+            <div class="time-unit">
+              <div class="time-value" id="minutes">00</div>
+              <div class="time-label">Minutes</div>
+            </div>
+            <div class="time-separator">:</div>
+            <div class="time-unit">
+              <div class="time-value" id="seconds">00</div>
+              <div class="time-label">Seconds</div>
+            </div>
+          </div>
+          <div class="countdown-date" id="event-date-display"></div>
+        </div>
+
+
+      </div>
+
+      <!-- Decorative floating emojis -->
+      <div class="floating-emoji" style="--x:10%;--y:15%;--d:6s">💛</div>
+      <div class="floating-emoji" style="--x:85%;--y:20%;--d:4s">🌸</div>
+      <div class="floating-emoji" style="--x:5%;--y:70%;--d:7s">✨</div>
+      <div class="floating-emoji" style="--x:90%;--y:75%;--d:5s">🎉</div>
+      <div class="floating-emoji" style="--x:50%;--y:8%;--d:8s">🌟</div>
+      <div class="floating-emoji" style="--x:20%;--y:85%;--d:6s">💫</div>
+      <div class="floating-emoji" style="--x:75%;--y:88%;--d:4.5s">🎈</div>
+    </section>
+
+    <!-- ========== GALLERY SCREEN ========== -->
+    <section id="gallery-screen" class="screen gallery-screen hidden">
+
+      <div class="gallery-header">
+        <div class="gallery-badge">📸 Memory Gallery</div>
+        <h2 class="gallery-title">Good Bye Friends, <span class="gradient-text">Memories Forever</span></h2>
+        <p class="gallery-subtitle">Looking back at the incredible moments we built together.</p>
+
+        <div class="gallery-controls">
+          <button class="filter-btn active" onclick="filterMedia('all', this)">All</button>
+          <button class="filter-btn" onclick="filterMedia('image', this)">📷 Photos</button>
+          <button class="filter-btn" onclick="filterMedia('video', this)">🎬 Videos</button>
+        </div>
+      </div>
+
+      <!-- Loading State -->
+      <div class="loading-state" id="loading-state">
+        <div class="loader-ring"></div>
+        <p>Loading your memories...</p>
+      </div>
+
+      <!-- Error State -->
+      <div class="error-state hidden" id="error-state">
+        <div class="error-icon">😔</div>
+        <h3>Couldn't load media</h3>
+        <p id="error-message">Please check your Google Drive folder settings.</p>
+        <a href="admin.html" class="btn-secondary" style="display:inline-block; text-decoration:none;">⚙️ Update Settings</a>
+      </div>
+
+      <!-- Media Grid -->
+      <div class="media-grid" id="media-grid"></div>
+
+      <!-- Load More -->
+      <div class="load-more-wrap" id="load-more-wrap" style="display:none">
+        <button class="btn-load-more" id="load-more-btn" onclick="loadNextPage()">Load More Memories</button>
+      </div>
+
+      <!-- Footer -->
+      <footer class="gallery-footer">
+        <div class="heart-divider">💛 💛 💛</div>
+        <p>Made with love 💛</p>
+        <button class="back-btn" onclick="goBack()">← Back to Countdown</button>
+      </footer>
+    </section>
+
+  </div>
+
+  <!-- ========== LIGHTBOX ========== -->
+  <div id="lightbox" class="lightbox hidden">
+    <button class="lightbox-close" onclick="closeLightbox()">✕</button>
+    <button class="lightbox-prev" onclick="prevMedia()">‹</button>
+    <button class="lightbox-next" onclick="nextMedia()">›</button>
+    <div class="lightbox-content" id="lightbox-content"></div>
+    <div class="lightbox-caption" id="lightbox-caption"></div>
+  </div>
+
+  <script src="config.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
