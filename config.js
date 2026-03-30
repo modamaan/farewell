@@ -8,7 +8,7 @@ window.appConfig = {
   // Make sure each file is set to "Anyone with the link can view".
   // You can paste as many links as you want, one per line.
   links: `
-https://store.storeimages.cdn-apple.com/1/as-images.apple.com/is/MGFQ4?wid=4000&hei=4000&fmt=jpeg&qlt=90&.v=1757534575976
+https://drive.google.com/file/d/1_Example-ID-Replace-Me/view?usp=sharing
 https://drive.google.com/file/d/2_Example-ID-Replace-Me/view?usp=sharing
   `
 };
