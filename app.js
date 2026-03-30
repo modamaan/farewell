@@ -102,13 +102,30 @@ function parseLinks(raw) {
   return items;
 }
 
+// ─── Date Parsing ───────────────────────────────────────────────────
+function parseDateIST(dateStr) {
+  if (!dateStr) return new Date(NaN);
+  let dStr = String(dateStr).trim();
+  dStr = dStr.replace(' ', 'T'); // Convert spaces to T for standard ISO format
+  
+  // If no timezone is specified (Z or +XX:XX), append IST (+05:30)
+  if (!/(Z|[+-]\d{2}:?\d{2})$/.test(dStr)) {
+    // Append seconds if missing
+    if ((dStr.match(/:/g) || []).length === 1) {
+      dStr += ':00';
+    }
+    dStr += '+05:30';
+  }
+  return new Date(dStr);
+}
+
 // ─── Launch ─────────────────────────────────────────────────────────
 function launchApp() {
   if (config.date) {
-    const d = new Date(config.date);
+    const d = parseDateIST(config.date);
     if (!isNaN(d.getTime())) {
       setText('event-date-display',
-        d.toLocaleDateString('en-US', { weekday:'long', year:'numeric', month:'long', day:'numeric', hour:'2-digit', minute:'2-digit' })
+        d.toLocaleDateString('en-US', { weekday:'long', year:'numeric', month:'long', day:'numeric', hour:'2-digit', minute:'2-digit', timeZone: 'Asia/Kolkata' })
       );
     }
   }
@@ -125,7 +142,7 @@ function setText(id, val) {
 let countdownInterval = null;
 
 function startCountdown() {
-  let target = new Date(config.date);
+  let target = parseDateIST(config.date);
   if (isNaN(target.getTime())) {
     target = new Date(Date.now() + 86400000); // 1 day fallback
   }
