@@ -1,7 +1,7 @@
 window.appConfig = {
   // Set your countdown target date here. 
   // Format: "YYYY-MM-DDTHH:MM" (e.g., "2026-12-31T23:59")
-  date: "2026-03-31T1:09",
+  date: "2026-03-31T1:14",
 
   // Paste your Google Drive share links here.
   // Make sure each file is set to "Anyone with the link can view".
