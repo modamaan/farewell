@@ -8,7 +8,6 @@ window.appConfig = {
   // Make sure each file is set to "Anyone with the link can view".
   // You can paste as many links as you want, one per line.
   links: `
-https://drive.google.com/file/d/1_Example-ID-Replace-Me/view?usp=sharing
-https://drive.google.com/file/d/2_Example-ID-Replace-Me/view?usp=sharing
+https://drive.google.com/file/d/1tKXqQ-fndfnC9zSap8brk3b4IjDSLH9G/view?usp=drivesdk
   `
 };
